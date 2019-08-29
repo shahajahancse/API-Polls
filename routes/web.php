@@ -11,12 +11,16 @@
 |
 */
 
-$router->get('/', function () use ($router) {
-    return response()->json([
-    	'success' => true, 
-    	'message' => 'Welcome to our Poll API'
-    ]);
+
+
+$router->group(['prefix' => 'admin'], function () use ($router) {
+    $router->get('/', 'ExampleController@index');
 });
+
+
+
+
+
 
 
 
