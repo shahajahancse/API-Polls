@@ -25,13 +25,13 @@ class UserController extends Controller
 
     public function index()
     {
-        return response()->json([
-                'success' => true, 
-                'message' => 'Welcome to our Poll API'
-            ]);
+        // return response()->json([
+        //         'success' => true, 
+        //         'message' => 'Welcome to our Poll API'
+        //     ]);
     }
 
-    // Create user registration function here ->
+    // Create to user registration function here ->
     
     public function create(Request $request)  
     {
@@ -67,7 +67,7 @@ class UserController extends Controller
 
             // Data insert end 
             // 
-            // single view here ->
+            // retrieve a single row by the id, use the find method() here ->
 
             $user = DB::table('users')->find($id);
             return response()->json([
@@ -85,7 +85,7 @@ class UserController extends Controller
                 'message' => $e->getMessage(),
             ], 400);
         }   
-            // end insert and single row view data
+            // end insert and Retrieving A Single Row data
     }
 
 

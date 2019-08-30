@@ -14,13 +14,14 @@
 	//  checking the processing to group route and show json data.
 
 $router->group(['prefix' => 'admin'], function () use ($router) {
-    $router->get('/', 'UserController@index');
+    $router->get('/', 'ExampleController@index');
 });
 
 
 	//  User Route here -->
 
 $router->post('users', 'UserController@create'); // user registration
+$router->get('users', 'UserController@index');   // Retrieving All data
 
 
 

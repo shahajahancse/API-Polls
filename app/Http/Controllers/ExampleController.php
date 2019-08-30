@@ -14,5 +14,10 @@ class ExampleController extends Controller
         //
     }
 
+    return response()->json([
+            'success' => true, 
+            'message' => 'Welcome to our Poll API'
+        ]);
+
     //
 }
