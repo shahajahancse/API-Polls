@@ -21,7 +21,7 @@ $router->group(['prefix' => 'admin'], function () use ($router) {
 	//  User Route here -->
 
 $router->post('users', 'UserController@create'); // user registration
-$router->get('users', 'UserController@index');   // Retrieving All data
+$router->get('users', 'UserController@view');   // Retrieving All data
 
 
 

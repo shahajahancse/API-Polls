@@ -25,10 +25,7 @@ class UserController extends Controller
 
     public function index()
     {
-        // return response()->json([
-        //         'success' => true, 
-        //         'message' => 'Welcome to our Poll API'
-        //     ]);
+        
     }
 
     // Create to user registration function here ->
@@ -75,7 +72,6 @@ class UserController extends Controller
                 'full_name' => $user->full_name,
                 'username'  => $user->username, 
                 'email'     => $user->email,
-                'password'  => $user->password,
             ]);
         } 
         catch (Exception $e) 
@@ -86,6 +82,15 @@ class UserController extends Controller
             ], 400);
         }   
             // end insert and Retrieving A Single Row data
+    }
+
+
+    // Retrieving All Data From A Table
+    
+    public function view()
+    {
+        $user = DB::table('users')->get();
+        return response()->json($user);
     }
 
 
