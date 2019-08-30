@@ -20,7 +20,7 @@ $router->group(['prefix' => 'admin'], function () use ($router) {
 
 	//  User Route here -->
 
-$router->post('users', 'UserController@create');
+$router->post('users', 'UserController@create'); // user registration
 
 
 
