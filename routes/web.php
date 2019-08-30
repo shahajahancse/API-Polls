@@ -11,11 +11,18 @@
 |
 */
 
-
+	//  checking the processing to group route and show json data.
 
 $router->group(['prefix' => 'admin'], function () use ($router) {
-    $router->get('/', 'ExampleController@index');
+    $router->get('/', 'UserController@index');
 });
+
+
+	//  User Route here -->
+
+$router->post('users', 'UserController@create');
+
+
 
 
 
