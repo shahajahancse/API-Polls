@@ -6,7 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades;
-use Illuminate\Support\Facades\Cache;
+// use Illuminate\Support\Facades\Cache;
 use Illuminate\Validation\ValidationException;
 use Carbon\Carbon;
 
@@ -93,6 +93,38 @@ class UserController extends Controller
         return response()->json($user);
     }
 
+
+    public function authenticate(Request $request)
+    {
+        try 
+        {
+            $this->validate($request, [
+                'email' => 'required|email',
+                'password' => 'required|min:6',
+            ]);
+        } 
+        catch (ValidationException $e) 
+        {
+            return response()->json([
+                'success' => false,
+                'message' => $e->getMessage(),
+            ], 422);
+        }
+
+        $token = app('auth')->attempt($request->only('email', 'password'));
+        if($token) 
+        {
+            return response()->json([
+                'success' => true,
+                'message' => 'User authenticated',
+                'token' => $token,
+            ]);
+        }
+        return response()->json([
+            'success' => false,
+            'message' => 'Invalid credentials',
+        ], 400);
+    }
 
     //
 }

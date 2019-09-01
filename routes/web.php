@@ -23,6 +23,8 @@ $router->group(['prefix' => 'admin'], function () use ($router) {
 $router->post('users', 'UserController@create'); // user registration
 $router->get('users', 'UserController@view');   // Retrieving All data
 
+// User Authentication
+$router->post('/login', 'UserController@authenticate');
 
 
 

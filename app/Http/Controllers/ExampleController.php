@@ -14,10 +14,13 @@ class ExampleController extends Controller
         //
     }
 
-    return response()->json([
-            'success' => true, 
-            'message' => 'Welcome to our Poll API'
-        ]);
+    public function index()
+    {
+        return response()->json([
+                    'success' => true, 
+                    'message' => 'Welcome to our Poll API'
+                ]);
+    }
 
     //
 }
