@@ -18,13 +18,19 @@ $router->group(['prefix' => 'admin'], function () use ($router) {
 });
 
 
-	//  User Route here -->
+	// user resource
+$router->post('users', 'UserController@create');   
 
-$router->post('users', 'UserController@create'); // user registration
-$router->get('users', 'UserController@view');   // Retrieving All data
-
-// User Authentication
+	// User Authentication
 $router->post('/login', 'UserController@authenticate');
+
+	// Restricted route
+$router->group(['middleware' => 'auth:api'], function () use ($router)
+{
+	$router->get('/users', 'UserController@view'); 
+	$router->get('/me', 'UserController@me');
+});
+ 
 
 
 

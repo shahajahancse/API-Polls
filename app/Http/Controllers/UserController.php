@@ -89,11 +89,11 @@ class UserController extends Controller
     
     public function view()
     {
-        $user = DB::table('users')->get();
-        return response()->json($user);
+        $users = DB::table('users')->get();
+        return response()->json($users);
     }
 
-
+    // authentication the request 
     public function authenticate(Request $request)
     {
         try 
@@ -111,6 +111,7 @@ class UserController extends Controller
             ], 422);
         }
 
+        // create token 
         $token = app('auth')->attempt($request->only('email', 'password'));
         if($token) 
         {
@@ -126,5 +127,23 @@ class UserController extends Controller
         ], 400);
     }
 
-    //
+    // end authentication the request 
+
+    //  show profile
+    public function me()
+    {
+        $user = app('auth')->user();
+        if ($user) 
+        {
+            return response()->json([
+                'success' => true,
+                'message' => 'User profile found',
+                'user' => $user,
+            ]);
+        }
+        return response()->json([
+            'success' => false,
+            'message' => 'User not found',
+        ], 404);
+    }
 }
